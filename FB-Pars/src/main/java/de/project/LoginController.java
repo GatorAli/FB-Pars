@@ -45,7 +45,7 @@ public class LoginController implements Initializable {
 	private void db_connect_btnClick(ActionEvent event) {
 		
 		DataBase_Connector.connectDB();
-		db_conn_stat.setText("verbunden");
+		
 		
 		
 		try {
@@ -65,8 +65,8 @@ public class LoginController implements Initializable {
 	
 	}
 		
-		@FXML
-		private void db_path_browseBtnClick(ActionEvent event) {
+	@FXML
+	private void db_path_browseBtnClick(ActionEvent event) {
 			FileChooser fc = new FileChooser();
 			fc.setTitle("Select Database");
 			Window primaryStage = null;

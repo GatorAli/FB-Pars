@@ -3,22 +3,36 @@ import java.sql.*;
 
 public class DataBase_Connector {
 	
-	private static String dbPath = "";
+	private static String dbPath = null;
 	private static Connection connDB = null;
+
+	
 	
 	public static Connection getConnDB() {
 		
 			return connDB;
+			
 		}
+	
+	public static String getDbPath() {
+		
+		return  dbPath;
+	}
+	
 	
 	public static void setDbPath(String path) {
 		dbPath = path;
 	}
 	
-	static void connectDB() {
+	static void connectDB()	{
+		StringBuilder sb = new StringBuilder();
+		sb.append("jdbc:sqlite:");
+		sb.append(dbPath);
+		System.out.println(sb.toString());
+		
 	 try {
 		Class.forName("org.sqlite.JDBC");
-		connDB = DriverManager.getConnection("jdbc:sqlite:dbPath");	
+		connDB = DriverManager.getConnection(sb.toString());	
 		
 		
 	} catch (ClassNotFoundException e) {
@@ -33,6 +47,7 @@ public class DataBase_Connector {
 	 
 	}
 
+	
 	
 
 }
