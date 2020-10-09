@@ -1,9 +1,10 @@
-package de.project;
+package fxmlController;
 
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import de.project.DataBase_Connector;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,15 +42,34 @@ public class LoginController implements Initializable {
 	private TextField db_path_textfield;
 
 	
+	
+	//auswahlmöglichkeit um Datenbank im Dateisystem zu wählen
+	
+	@FXML
+	private void db_path_browseBtnClick(ActionEvent event) {
+			FileChooser fc = new FileChooser();
+			fc.setTitle("Select Database");
+			Window primaryStage = null;
+			File initPath = new File("G:\\Softwareprojekt\\Facebook\\001Testdaten_Grundlegendes\\ExtraktionGeorgSamsonG4\\Facebook Export");
+			fc.setInitialDirectory(initPath);
+			File file = fc.showOpenDialog(primaryStage);
+			
+			
+			db_path_textfield.setText(file.getAbsolutePath());
+			DataBase_Connector.setDbPath(file.getAbsolutePath());
+			
+	}
+	
+	
 	@FXML
 	private void db_connect_btnClick(ActionEvent event) {
 		
+		//Stellt Verbindung zur gewählten Datenbank her
 		DataBase_Connector.connectDB();
 		
-		
-		
+		// Wechselt die Szene  von Login auf Main
 		try {
-		Parent MainWindow = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
+		Parent MainWindow = FXMLLoader.load(getClass().getResource("/fxmlController/MainWindow.fxml"));
 		Scene MainWindowScene = new Scene(MainWindow);
 		Stage MainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		MainStage.setScene(MainWindowScene);
@@ -65,17 +85,7 @@ public class LoginController implements Initializable {
 	
 	}
 		
-	@FXML
-	private void db_path_browseBtnClick(ActionEvent event) {
-			FileChooser fc = new FileChooser();
-			fc.setTitle("Select Database");
-			Window primaryStage = null;
-			File file = fc.showOpenDialog(primaryStage);
-			
-			db_path_textfield.setText(file.getAbsolutePath());
-			DataBase_Connector.setDbPath(file.getAbsolutePath());
-			
-	}
+	
 }
 	
 

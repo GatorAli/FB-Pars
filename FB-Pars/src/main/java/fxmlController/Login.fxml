@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxmlController.LoginController">
+   <center>
+      <AnchorPane maxHeight="400.0" maxWidth="322.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="322.0">
+         <children>
+            <Label layoutX="45.0" layoutY="42.0" text="Dateipfad" />
+            <TextField fx:id="db_path_textfield" layoutX="45.0" layoutY="62.0" prefHeight="30.0" prefWidth="242.0" />
+            <Button fx:id="db_path_browseBtn" layoutX="207.0" layoutY="107.0" mnemonicParsing="false" onAction="#db_path_browseBtnClick" prefHeight="30.0" prefWidth="79.0" text="Browse" />
+            <Button fx:id="db_connect_btn" layoutX="112.0" layoutY="332.0" mnemonicParsing="false" onAction="#db_connect_btnClick" prefHeight="30.0" prefWidth="98.0" text="Connect" />
+            <VBox layoutX="124.0" layoutY="182.0" spacing="20.0">
+               <children>
+                  <RadioButton mnemonicParsing="false" text="Android" toggleGroup="$os_togglegroup">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="os_togglegroup" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton mnemonicParsing="false" text="IOS" toggleGroup="$os_togglegroup" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

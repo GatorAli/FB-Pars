@@ -1,6 +1,9 @@
 package de.project;
 import java.sql.*;
 
+// stellt verbindung zur gewählten DB her und stellt diese zur Verfügung 
+
+
 public class DataBase_Connector {
 	
 	private static String dbPath = null;
@@ -19,12 +22,13 @@ public class DataBase_Connector {
 		return  dbPath;
 	}
 	
-	
 	public static void setDbPath(String path) {
 		dbPath = path;
 	}
 	
-	static void connectDB()	{
+	public static void connectDB()	{
+	// stellt für den Driver Manager den String zum Verbinden zur Verfügung
+		
 		StringBuilder sb = new StringBuilder();
 		sb.append("jdbc:sqlite:");
 		sb.append(dbPath);
