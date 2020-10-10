@@ -18,14 +18,17 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 
-public class ContactsController {
+public class ContactsController implements Initializable {
 	
 	
 Connection DataBase = null;
@@ -38,10 +41,9 @@ ResultSet rs = null;
 @FXML TableColumn<Contact, String> column_username; 
 @FXML TableColumn<Contact, String> column_FbId;
 
-	
 
 	//Prüft initial verbindung zur Datenbank
-	public void initialize(URL arg0, ResourceBundle arg1) throws SQLException {
+	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		
 		column_firstname.setCellValueFactory(new PropertyValueFactory<Contact, String>("firstname"));
@@ -49,16 +51,15 @@ ResultSet rs = null;
 		column_username.setCellValueFactory(new PropertyValueFactory<Contact, String>("username"));
 		column_FbId.setCellValueFactory(new PropertyValueFactory<Contact, String>("FbId"));
 		
-		table.setEditable(true);
-	
-	
+		//table.setEditable(true);
+		
 		
 	}
 		
 	public ObservableList<Contact> getContacts() throws SQLException{
 		
 		ObservableList<Contact> contact = FXCollections.observableArrayList();
-		
+				
 		// Itterate rows of Resultset
 		while(rs.next()) {
 			Contact person = new Contact(null, null, null, null);
@@ -81,33 +82,30 @@ ResultSet rs = null;
 			System.out.println(contact.size());
 		}
 			
-			
-
 		return contact;
-	
 	}
 	
-public void populate_BtnClick(ActionEvent event) throws IOException, SQLException {
+	public void populate_BtnClick(ActionEvent event) throws IOException, SQLException {
 		
 		DataBase = DataBase_Connector.getConnDB();
 		
 		Statement st = DataBase.createStatement();
 		rs = st.executeQuery("SELECT user_key, first_name, last_name, username FROM thread_users" );
-
+		
+		
 		table.setItems(getContacts());
 
 		
-		ObservableList<Contact> contacts = table.getItems();
+		ObservableList<Contact> testoutput = table.getItems();
 		
-		for( int i = 0; i<contacts.size();i++) {
+		for( int i = 0; i<testoutput.size();i++) {
 			
-			System.out.println(contacts.get(i).getFirstname() + " "+
-								contacts.get(i).getLastname() + " "+
-								contacts.get(i).getUsername() + " "+
-								contacts.get(i).getFbId());
+			System.out.println(testoutput.get(i).getFirstname() + " "+
+					testoutput.get(i).getLastname() + " "+
+					testoutput.get(i).getUsername() + " "+
+					testoutput.get(i).getFbId());
 		
-	
 	}
-	
+		
 }	
 }

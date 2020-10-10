@@ -47,7 +47,7 @@
         <tabs>
           <Tab text="Kontakte">
           	<content>
-          		<fx:include fx:id="contact_tab" source="Contacts.fxml" />
+          		<fx:include fx:id="contacts_tab" source="Contacts.fxml" />
           	</content>
           </Tab>
           <Tab text="messages">

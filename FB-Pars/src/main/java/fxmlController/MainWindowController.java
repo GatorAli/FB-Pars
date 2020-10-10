@@ -25,7 +25,7 @@ public class MainWindowController implements Initializable{
 	@FXML Label connStat;
 	@FXML private Button testBtn;
 	@FXML private TextArea testTextArea;
-	@FXML private Tab contacts_tab;
+	@FXML private Tab contact_tab;
 	@FXML private ContactsController contactsController;
 	
 	
